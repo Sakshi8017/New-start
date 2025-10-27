@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Student Group Matcher - RVCE</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>AI Student Group Matcher</h1>
+            <p>RV College of Engineering - Information Science Department</p>
+        </header>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="students">Students</button>
+            <button class="tab-btn" data-tab="groups">Groups</button>
+            <button class="tab-btn" data-tab="topics">Topics</button>
+            <button class="tab-btn" data-tab="chat">Group Chat</button>
+        </div>
+
+        <!-- Students Tab -->
+        <div class="tab-content active" id="students-tab">
+            <div class="controls">
+                <div class="control-group">
+                    <label for="semester-filter">Semester:</label>
+                    <select id="semester-filter">
+                        <option value="3">Semester 3</option>
+                        <option value="5">Semester 5</option>
+                        <option value="7">Semester 7</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label for="topic-select">Select Topic:</label>
+                    <select id="topic-select">
+                        <option value="">Choose a topic...</option>
+                    </select>
+                </div>
+
+                <button id="ai-suggest-btn" class="btn btn-primary">AI Suggest Groups</button>
+                <button id="manual-create-btn" class="btn btn-secondary">Create Manual Group</button>
+            </div>
+
+            <div class="students-grid" id="students-grid">
+                <!-- Students will be loaded here -->
+            </div>
+
+            <div id="selected-students" class="selected-panel">
+                <h3>Selected Students (<span id="selected-count">0</span>/5)</h3>
+                <div id="selected-list"></div>
+                <button id="create-group-btn" class="btn btn-success" disabled>Create Group</button>
+            </div>
+        </div>
+
+        <!-- Groups Tab -->
+        <div class="tab-content" id="groups-tab">
+            <h2>Formed Groups</h2>
+            <div id="groups-container">
+                <!-- Groups will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Topics Tab -->
+        <div class="tab-content" id="topics-tab">
+            <h2>Available Topics</h2>
+            <div class="semester-topics">
+                <div class="semester-section">
+                    <h3>Semester 3</h3>
+                    <div id="topics-sem3"></div>
+                </div>
+                <div class="semester-section">
+                    <h3>Semester 5</h3>
+                    <div id="topics-sem5"></div>
+                </div>
+                <div class="semester-section">
+                    <h3>Semester 7</h3>
+                    <div id="topics-sem7"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chat Tab -->
+        <div class="tab-content" id="chat-tab">
+            <div class="chat-container">
+                <div class="chat-sidebar">
+                    <h3>Your Groups</h3>
+                    <div id="chat-groups-list">
+                        <!-- Groups will be listed here -->
+                    </div>
+                </div>
+                <div class="chat-main">
+                    <div id="chat-header">
+                        <h3>Select a group to start chatting</h3>
+                    </div>
+                    <div id="chat-messages">
+                        <!-- Messages will appear here -->
+                    </div>
+                    <div id="chat-input-container" style="display: none;">
+                        <input type="text" id="chat-input" placeholder="Type your message...">
+                        <button id="send-btn" class="btn btn-primary">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Suggestions Modal -->
+    <div id="suggestions-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>AI Group Suggestions</h2>
+            <p>Based on skills, interests, and diversity analysis</p>
+            <div id="suggestions-container"></div>
+        </div>
+    </div>
+
+    <!-- Student Profile Modal -->
+    <div id="profile-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Student Profile</h2>
+            <div id="profile-content"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
